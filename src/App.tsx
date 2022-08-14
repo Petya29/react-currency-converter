@@ -10,11 +10,20 @@ function App() {
 
   const executedRef = useRef(false);
 
-  const [currencies, setCurrencies] = useState<ICurrencies>({});
+  const [currencies, setCurrencies] = useState<{
+    plain: IAPI[],
+    formatted: ICurrencies
+  }>({
+    plain: [],
+    formatted: {}
+  });
 
   const fetchCurrencies = async () => {
     const response = await axios.get<IAPI[]>(import.meta.env.VITE_CASH_RATE_API);
-    setCurrencies(formatCurrencies(response.data));
+    setCurrencies({
+      plain: response.data,
+      formatted: formatCurrencies(response.data)
+    });
   }
 
   useEffect(() => {
@@ -28,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar currencies={currencies} />
+      <NavBar currencies={currencies.plain} />
       <CurrencyConverter />
     </div>
   )
