@@ -1,15 +1,39 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { TextField } from '../components/ui/inputs/TextField';
 import { Container } from '../components/ui/layout/Container';
 import { Paper } from '../components/ui/surfaces/Paper';
 
 export const CurrencyConverter: FC = () => {
+
+  const [sum, setSum] = useState<{ from: string, to: string }>({ from: '', to: '' });
+
+  const handleChangeSumFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSum(prevSum => {
+      return { ...prevSum, from: e.target.value }
+    });
+  }
+
+  const handleChangeSumTo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSum(prevSum => {
+      return { ...prevSum, to: e.target.value }
+    });
+  }
+
   return (
-    <Container maxWidth='sm'>
+    <Container maxWidth='md'>
       <div className='mt-3 mx-16 flex flex-col items-center'>
         <Paper>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Pariatur numquam ullam amet impedit libero, ad in aliquam,
-          totam tempore officia aliquid qui veniam eum, harum exercitationem blanditiis illum quos rerum.
+          <div className='flex items-center'>
+            <TextField
+              value={sum.from}
+              onChange={handleChangeSumFrom}
+            />
+            =
+            <TextField
+              value={sum.to}
+              onChange={handleChangeSumTo}
+            />
+          </div>
         </Paper>
       </div>
     </Container>

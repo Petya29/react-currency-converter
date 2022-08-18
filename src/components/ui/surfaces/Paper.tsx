@@ -5,7 +5,7 @@ interface IPaperProps {
     rounded?: 'md' | 'lg' | 'full' | 'none',
     style?: CSSProperties,
     classNames?: string,
-    children: ReactElement | string | undefined
+    children: any
 }
 
 export const Paper: FC<IPaperProps> = ({ shadow, rounded, style, classNames = '', children }) => {
