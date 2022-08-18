@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { formatExchangeRates } from '../../helpers/currency';
-import { IAPI } from '../../models/IApi';
+import { formatExchangeRates } from '../../../helpers/currency';
+import { IAPI } from '../../../models/IApi';
 
 interface INavBarProps {
     currencies: IAPI[]

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { NavBar } from './components/ui/NavBar'
+import { NavBar } from './components/ui/surfaces/NavBar'
 import { formatCurrencies } from './helpers/currency';
 import { IAPI } from './models/IApi';
 import { ICurrencies } from './models/ICurrencies';
