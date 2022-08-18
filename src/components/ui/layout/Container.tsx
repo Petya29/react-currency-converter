@@ -1,30 +1,25 @@
-import { FC, ReactElement } from 'react';
+import { ReactNode } from 'react';
+
+export const enum Sizes {
+    xs = "max-w-xs",
+    sm = "max-w-screen-sm",
+    md = "max-w-screen-md",
+    lg = "max-w-screen-lg",
+    xl = "max-w-screen-xl",
+    "2xl" = "max-w-screen-2xl",
+    full = "max-w-full",
+    none = "max-w-none"
+}
 
 interface IContainerProps {
-    maxWidth?:
-    'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | 'full'
-    | 'none',
+    maxWidth?: Sizes,
     classNames?: string,
-    children: ReactElement | string | undefined
+    children: ReactNode
 }
 
-const formatClassName = (maxWidth: string): string => {
-    if (maxWidth === 'full' || maxWidth === 'none' || maxWidth === 'xs') {
-        return `max-w-${maxWidth}`;
-    }
-
-    return `max-w-screen-${maxWidth}`;
-}
-
-export const Container: FC<IContainerProps> = ({ maxWidth = 'full', classNames = '', children }) => {
+export const Container = ({ maxWidth = Sizes.full, classNames = '', children }: IContainerProps) => {
     return (
-        <div className={`${formatClassName(maxWidth)} ${classNames}`}>
+        <div className={`${maxWidth} ${classNames}`}>
             {children}
         </div>
     )

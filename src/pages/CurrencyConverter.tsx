@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { TextField } from '../components/ui/inputs/TextField';
-import { Container } from '../components/ui/layout/Container';
-import { Paper } from '../components/ui/surfaces/Paper';
+import { Container, Sizes } from '../components/ui/layout/Container';
+import { Paper, Rounds } from '../components/ui/surfaces/Paper';
 
 export const CurrencyConverter: FC = () => {
 
@@ -20,9 +20,9 @@ export const CurrencyConverter: FC = () => {
   }
 
   return (
-    <Container maxWidth='md'>
+    <Container maxWidth={Sizes.md}>
       <div className='mt-3 mx-16 flex flex-col items-center'>
-        <Paper>
+        <Paper rounded={Rounds.md}>
           <div className='flex items-center'>
             <TextField
               value={sum.from}
