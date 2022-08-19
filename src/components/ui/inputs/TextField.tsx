@@ -1,50 +1,62 @@
-import React, { FC, HTMLInputTypeAttribute, useState } from 'react';
+import React, { CSSProperties, HTMLAttributes } from 'react';
+import './TextField.css';
 
-interface ITextFieldProps {
-    type?: HTMLInputTypeAttribute,
+interface ITextFieldProps extends HTMLAttributes<HTMLInputElement> {
     name?: string,
     label?: string,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    value: any
+    value: any,
+    variant?: 'outlined' | 'lined',
+    styles?: CSSProperties,
+    inputStyles?: CSSProperties
 }
 
-export const TextField: FC<ITextFieldProps> = ({
-    type = 'text',
+export const TextField = ({
     name,
-    label = 'text',
-    onChange,
-    value
-}) => {
-
-    const [isActive, setIsActive] = useState(false);
-
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (value === '') setIsActive(false);
-    }
-
+    label,
+    value,
+    variant = 'outlined',
+    styles,
+    inputStyles,
+    ...rest
+}: ITextFieldProps) => {
     return (
-        <div className="relative border rounded bg-gray-600 text-white border-white border-opacity-25">
-            <input
-                className={[
-                    "outline-none w-full rounded bg-transparent text-sm transition-all duration-200 ease-in-out p-2",
-                    isActive ? "pt-6" : ""
-                ].join(" ")}
-                id={name}
-                name={name}
-                type={type}
-                value={value}
-                onChange={onChange}
-                onFocus={() => setIsActive(true)}
-                onBlur={handleBlur}
-            />
-            <label
-                className={[
-                    "absolute top-0 left-0 flex items-center text-white text-opacity-50 p-2 transition-all duration-200 ease-in-out",
-                    isActive ? "text-xs" : "text-sm"
-                ].join(" ")}
-                htmlFor={name}
-            >
-                {label}
+        <div style={styles}>
+            <label className="relative">
+                <input
+                    name={name}
+                    className={[
+                        variant === 'outlined' ? "border rounded-lg p-5" : "border-b",
+                        "h-14",
+                        "w-72",
+                        "text-xl",
+                        "bg-transparent",
+                        "border-white",
+                        "border-opacity-50",
+                        "outline-none",
+                        "placeholder-transparent",
+                        "focus:placeholder-[#ffffff80]",
+                        "focus:border-blue-500",
+                        "transition duration-200"
+                    ].join(" ")}
+                    style={inputStyles}
+                    {...rest}
+                />
+                {label &&
+                    <span
+                        className={[
+                            value ? "input-label" : "empty-input-label",
+                            variant === 'outlined' ? "px-1 mx-4 -bottom-[6%]" : "top-0",
+                            "cursor-text",
+                            "text-xl",
+                            "text-[#ffffff80]",
+                            "absolute",
+                            "left-0.5",
+                            "transition duration-200"
+                        ].join(" ")}
+                    >
+                        {label}
+                    </span>
+                }
             </label>
         </div>
     )

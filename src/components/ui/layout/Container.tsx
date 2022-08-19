@@ -19,7 +19,7 @@ interface IContainerProps {
 
 export const Container = ({ maxWidth = Sizes.full, classNames = '', children }: IContainerProps) => {
     return (
-        <div className={`${maxWidth} ${classNames}`}>
+        <div className={`${maxWidth} ${classNames} m-auto`}>
             {children}
         </div>
     )

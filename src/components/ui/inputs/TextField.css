@@ -1,0 +1,11 @@
+input:focus~.empty-input-label {
+    @apply text-blue-500 bg-[#1e1e1e] transform -translate-y-7 -translate-x-2 scale-75;
+}
+
+input:focus~.input-label {
+    @apply text-blue-500 bg-[#1e1e1e] transform -translate-y-7 -translate-x-2 scale-75;
+}
+
+input~.input-label {
+    @apply text-[#ffffff80] bg-[#1e1e1e] transform -translate-y-7 -translate-x-2 scale-75;
+}
