@@ -1,4 +1,4 @@
-import React, { CSSProperties, HTMLAttributes } from 'react';
+import { CSSProperties, HTMLAttributes } from 'react';
 import './TextField.css';
 
 interface ITextFieldProps extends HTMLAttributes<HTMLInputElement> {

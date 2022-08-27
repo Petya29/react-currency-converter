@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { TextField } from '../components/ui/inputs/TextField';
-import { Container, Sizes } from '../components/ui/layout/Container';
-import { Paper, Rounds } from '../components/ui/surfaces/Paper';
+import { TextField } from '../components/ui/inputs';
+import { Container, ContainerSizes } from '../components/ui/layout';
+import { Paper, PaperRounds } from '../components/ui/surfaces';
 
 export const CurrencyConverter = () => {
 
@@ -15,9 +15,9 @@ export const CurrencyConverter = () => {
   }
 
   return (
-    <Container maxWidth={Sizes.md}>
+    <Container maxWidth={ContainerSizes.md}>
       <div className='mt-52 mx-16 flex flex-col items-center'>
-        <Paper rounded={Rounds.md}>
+        <Paper rounded={PaperRounds.md}>
           <div className='flex items-center'>
             <TextField
               variant='lined'
