@@ -1,4 +1,4 @@
-import { CSSProperties, HTMLAttributes, useId } from 'react';
+import { Children, CSSProperties, HTMLAttributes, ReactNode, useId } from 'react';
 import './Select.css';
 
 interface ISelectProps extends HTMLAttributes<HTMLSelectElement> {
@@ -6,6 +6,7 @@ interface ISelectProps extends HTMLAttributes<HTMLSelectElement> {
   value: any,
   styles?: CSSProperties,
   inputStyles?: CSSProperties,
+  children: ReactNode
 }
 
 export const Select = ({
@@ -13,6 +14,7 @@ export const Select = ({
   value,
   styles,
   inputStyles,
+  children,
   ...rest
 }: ISelectProps) => {
 
@@ -40,7 +42,10 @@ export const Select = ({
           ].join(" ")}
           style={inputStyles}
           {...rest}
-        />
+        >
+          <option hidden disabled value={'hidden'}></option>
+          {children}
+        </select>
         {label &&
           <span
             className={[
