@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { TextField } from '../components/ui/inputs';
+import { Select, TextField } from '../components/ui/inputs';
 import { Container, ContainerSizes } from '../components/ui/layout';
 import { Paper, PaperRounds } from '../components/ui/surfaces';
 
 export const CurrencyConverter = () => {
 
+  const [currFrom, setCurrFrom] = useState<string>('');
   const [sum, setSum] = useState<{ from: string, to: string }>({ from: '', to: '' });
+
+  const handleChangeCurrFrom = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+  }
 
   const handleChangeSum = (e: React.FormEvent<HTMLInputElement>, key: 'from' | 'to') => {
     setSum(prevSum => {
@@ -20,19 +25,43 @@ export const CurrencyConverter = () => {
         <Paper rounded={PaperRounds.md}>
           <div className='flex items-center'>
             <TextField
-              variant='lined'
               label='text'
-              placeholder='input'
-              value={sum.from}
-              onChange={(e) => handleChangeSum(e, 'from')}
-            />
-            =
-            <TextField
-              label='text'
-              placeholder='input'
               value={sum.to}
               onChange={(e) => handleChangeSum(e, 'to')}
             />
+            =
+            <TextField
+              variant='lined'
+              label='text'
+              value={sum.from}
+              onChange={(e) => handleChangeSum(e, 'from')}
+            />
+          </div>
+          <div className='flex items-center justify-between'>
+            <Select
+              label='currency'
+              value={currFrom}
+              defaultValue={'hidden'}
+              onChange={handleChangeCurrFrom}
+              styles={{ marginTop: 14 }}
+            >
+              <option hidden disabled value={'hidden'}></option>
+              <option value={'UAH'}>UAH</option>
+              <option value={'USD'}>USD</option>
+              <option value={'EUR'}>EUR</option>
+            </Select>
+            <Select
+              label='currency'
+              value={currFrom}
+              defaultValue={'hidden'}
+              onChange={handleChangeCurrFrom}
+              styles={{ marginTop: 14 }}
+            >
+              <option hidden disabled value={'hidden'}></option>
+              <option value={'UAH'}>UAH</option>
+              <option value={'USD'}>USD</option>
+              <option value={'EUR'}>EUR</option>
+            </Select>
           </div>
         </Paper>
       </div>
