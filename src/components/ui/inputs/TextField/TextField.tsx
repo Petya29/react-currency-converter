@@ -1,8 +1,9 @@
-import { CSSProperties, HTMLAttributes } from 'react';
+import { CSSProperties, HTMLAttributes, HTMLInputTypeAttribute } from 'react';
 import './TextField.css';
 
 interface ITextFieldProps extends HTMLAttributes<HTMLInputElement> {
     name?: string,
+    type?: HTMLInputTypeAttribute,
     label?: string,
     value: any,
     variant?: 'outlined' | 'lined',
@@ -12,6 +13,7 @@ interface ITextFieldProps extends HTMLAttributes<HTMLInputElement> {
 
 export const TextField = ({
     name,
+    type = 'text',
     label,
     value,
     variant = 'outlined',
@@ -24,6 +26,7 @@ export const TextField = ({
             <label className="relative">
                 <input
                     name={name}
+                    type={type}
                     className={[
                         variant === 'outlined' ? "border rounded-lg p-5" : "border-b",
                         "h-14",

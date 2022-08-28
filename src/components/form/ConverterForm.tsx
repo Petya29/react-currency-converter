@@ -51,13 +51,15 @@ export const ConverterForm = ({
             </div>
             <div className='flex items-center'>
                 <TextField
-                    label='text'
+                    type='number'
+                    label='Sum from'
                     value={formValues.sumFrom}
                     onChange={e => handleChangeForm((e.target as HTMLInputElement).value, 'sumFrom')}
                 />
                 =
                 <TextField
-                    label='text'
+                    type='number'
+                    label='Sum to'
                     value={formValues.sumTo}
                     onChange={e => handleChangeForm((e.target as HTMLInputElement).value, 'sumTo')}
                 />
