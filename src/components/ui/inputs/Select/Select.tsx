@@ -30,7 +30,7 @@ export const Select = ({
             "w-72",
             "px-4",
             "text-lg",
-            "bg-transparent",
+            "bg-[#1e1e1e]",
             "border-white",
             "border rounded-lg",
             "border-opacity-50",

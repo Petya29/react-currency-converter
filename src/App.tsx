@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <NavBar currencies={currencies.plain} />
-      <CurrencyConverter />
+      <CurrencyConverter currencies={currencies.formatted} />
     </div>
   )
 }
