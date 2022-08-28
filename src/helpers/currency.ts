@@ -54,7 +54,7 @@ export const convert = (from: string, to: string, sum: string, currencies: ICurr
     if (from === to) return sum;
 
     if (!currencies.hasOwnProperty(from) || !currencies[from].hasOwnProperty(to)) {
-        return 'double convert';
+        return doubleConvert(from, to, sum, currencies);
     }
 
     return String(+sum * +currencies[from][to]);

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ConverterForm } from '../components/form/ConverterForm';
 import { Container, ContainerSizes } from '../components/ui/layout';
+import { convert } from '../helpers/currency';
 import { ICurrencies, IFormValues } from '../models';
 
 interface ICurrencyConverterProps {
@@ -13,14 +14,44 @@ export const CurrencyConverter = ({ currencies }: ICurrencyConverterProps) => {
     currFrom: '',
     currTo: '',
     sumFrom: '',
-    sumTo: ''
-  })
+    sumTo: '',
+    convertNeeded: false
+  });
 
   const handleChangeForm = (value: string, key: string) => {
     setFormValues(prevValues => {
-      return { ...prevValues, [key]: value }
+      return {
+        ...prevValues,
+        [key]: value,
+        convertNeeded: true
+      }
     });
   }
+
+  useEffect(() => {
+    if (!formValues.convertNeeded || formValues.currFrom === '' || formValues.currTo === '') return;
+
+    const conversationResult = convert(
+      formValues.currFrom,
+      formValues.currTo,
+      formValues.sumFrom ? formValues.sumFrom : formValues.sumTo,
+      currencies
+    );
+
+    if (conversationResult !== 'Triple conversion is not supported') { // TODO add error type
+      setFormValues(prevValues => {
+        return {
+          ...prevValues,
+          [formValues.sumFrom ? 'sumTo' : 'sumFrom']: conversationResult,
+          convertNeeded: false
+        }
+      });
+    }
+  }, [formValues.convertNeeded]);
+
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues]);
 
   return (
     <Container maxWidth={ContainerSizes.md}>
